@@ -1,21 +1,19 @@
 <template>
   <form>
     <label for="date">Data</label>
-    <input type="date" name="date" id="date" v-model="entrance.date" />
+    <input type="date" name="date" id="date" v-model="date" />
     <label for="title">Título</label>
-    <input type="text" id="title" name="title" v-model="entrance.title" />
+    <input type="text" id="title" name="title" v-model="title" />
     <label for="category">Categoria</label>
-    <input
-      type="text"
-      name="category"
-      id="categoriy"
-      v-model="entrance.category"
-    />
+    <select name="category" id="category" v-model="category">
+      <option disabled value="">Selecione uma categoria</option>
+      <option value="income">Renda</option>
+      <option value="expense">Despesa</option>
+    </select>
     <label for="value">Valor</label>
-    <input type="number" name="value" id="value" v-model="entrance.value" />
-    <button>Adicionar</button>
+    <input type="text" name="value" id="value" v-model="value" />
+    <button @click.prevent="addEntry">Adicionar</button>
   </form>
-  {{ entrance }}
 </template>
 
 <script>
@@ -23,13 +21,29 @@ export default {
   name: "FormEntry",
   data() {
     return {
-      entrance: {
-        date: null,
-        title: null,
-        category: null,
-        value: null,
-      },
+      date: null,
+      title: null,
+      category: null,
+      value: null,
     };
+  },
+  methods: {
+    addEntry() {
+      let data = {
+        date: this.date,
+        title: this.title,
+        category: this.category,
+        value: this.value,
+      };
+      this.$emit("sendEntry", data);
+      this.resetForm();
+    },
+    resetForm() {
+      this.data = null;
+      this.title = null;
+      this.category = null;
+      this.value = null;
+    },
   },
 };
 </script>
