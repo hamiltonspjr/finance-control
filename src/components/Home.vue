@@ -18,6 +18,7 @@ export default {
       incomeValue: null,
       expenseValue: null,
       allEntry: [],
+      total: null,
     };
   },
   methods: {
