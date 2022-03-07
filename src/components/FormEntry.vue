@@ -11,7 +11,7 @@
       <option value="expense">Despesa</option>
     </select>
     <label for="value">Valor</label>
-    <input type="text" name="value" id="value" v-model="value" />
+    <input type="number" name="value" id="value" v-model="value" />
     <button @click.prevent="addEntry">Adicionar</button>
   </form>
 </template>
@@ -39,7 +39,7 @@ export default {
       this.resetForm();
     },
     resetForm() {
-      this.data = null;
+      this.date = null;
       this.title = null;
       this.category = null;
       this.value = null;
