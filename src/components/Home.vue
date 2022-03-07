@@ -1,7 +1,8 @@
 <template>
   <main>
     <h1>Controle Financeiro</h1>
-    <FormEntry />
+    <FormEntry @sendEntry="getEntry" />
+    <p>{{ allEntry }}</p>
   </main>
 </template>
 
@@ -11,6 +12,18 @@ export default {
   name: "Home",
   components: {
     FormEntry,
+  },
+  data() {
+    return {
+      incomeValue: null,
+      expenseValue: null,
+      allEntry: [],
+    };
+  },
+  methods: {
+    getEntry(event) {
+      this.allEntry.push(event);
+    },
   },
 };
 </script>
