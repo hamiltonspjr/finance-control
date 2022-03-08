@@ -7,7 +7,7 @@
       <DataCards name="Total" :value="total" />
     </section>
     <FormEntry @sendEntry="getEntry" />
-    <ItemsTable :list="allEntry"> </ItemsTable>
+    <ItemsTable @removeEntry="removeItem" :list="allEntry"> </ItemsTable>
   </main>
 </template>
 
@@ -49,6 +49,10 @@ export default {
         this.allEntry = JSON.parse(window.localStorage.list);
       }
     },
+    removeItem(event) {
+      this.allEntry.splice(event, 1);
+      window.localStorage.setItem("list", JSON.stringify(this.allEntry));
+    },
   },
   computed: {
     incomeValue() {
@@ -61,11 +65,6 @@ export default {
     },
     total() {
       return this.incomeValue - this.expenseValue;
-    },
-  },
-  watch: {
-    allEntry() {
-      window.localStorage.setItem("list", JSON.stringify(this.allEntry));
     },
   },
   created() {
