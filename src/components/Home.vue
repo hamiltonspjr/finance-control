@@ -30,6 +30,7 @@ export default {
   methods: {
     getEntry(event) {
       this.allEntry.push(event);
+      window.localStorage.setItem("list", JSON.stringify(this.allEntry));
     },
     calculateValue(array, category) {
       let value = 0;
@@ -42,6 +43,11 @@ export default {
         value += item;
       });
       return value;
+    },
+    checkLocalStorage() {
+      if (window.localStorage.list) {
+        this.allEntry = JSON.parse(window.localStorage.list);
+      }
     },
   },
   computed: {
@@ -56,6 +62,14 @@ export default {
     total() {
       return this.incomeValue - this.expenseValue;
     },
+  },
+  watch: {
+    allEntry() {
+      window.localStorage.setItem("list", JSON.stringify(this.allEntry));
+    },
+  },
+  created() {
+    this.checkLocalStorage();
   },
 };
 </script>
