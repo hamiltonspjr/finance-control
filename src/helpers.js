@@ -8,3 +8,8 @@ export function valueFormatBrl(value) {
     return "";
   }
 }
+
+export function dateFormatBr(date) {
+  let dateSeparate = date.split("-");
+  return `${dateSeparate[2]}/${dateSeparate[1]}/${dateSeparate[0]}`;
+}

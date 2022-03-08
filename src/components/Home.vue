@@ -7,18 +7,20 @@
       <DataCards name="Total" :value="total" />
     </section>
     <FormEntry @sendEntry="getEntry" />
-    <p>{{ allEntry }}</p>
+    <ItemsTable :list="allEntry"> </ItemsTable>
   </main>
 </template>
 
 <script>
 import FormEntry from "./FormEntry.vue";
 import DataCards from "./DataCards.vue";
+import ItemsTable from "./ItemsTable.vue";
 export default {
   name: "Home",
   components: {
     FormEntry,
     DataCards,
+    ItemsTable,
   },
   data() {
     return {
