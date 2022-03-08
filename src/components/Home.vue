@@ -1,20 +1,24 @@
 <template>
   <main>
     <h1>Controle Financeiro</h1>
+    <section>
+      <DataCards name="Renda" :value="incomeValue" />
+      <DataCards name="Despesa" :value="expenseValue" />
+      <DataCards name="Total" :value="total" />
+    </section>
     <FormEntry @sendEntry="getEntry" />
     <p>{{ allEntry }}</p>
-    <p>{{ incomeValue }}</p>
-    <p>{{ expenseValue }}</p>
-    <p>{{ total }}</p>
   </main>
 </template>
 
 <script>
 import FormEntry from "./FormEntry.vue";
+import DataCards from "./DataCards.vue";
 export default {
   name: "Home",
   components: {
     FormEntry,
+    DataCards,
   },
   data() {
     return {
