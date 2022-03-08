@@ -17,7 +17,7 @@
             <td>{{ item.title }}</td>
             <td>{{ item.category }}</td>
             <td>{{ item.value }}</td>
-            <td>excluir</td>
+            <td @click="removeItem(index)">excluir</td>
           </tr>
         </tbody>
       </table>
@@ -33,6 +33,11 @@ import { valueFormatBrl, dateFormatBr } from "../helpers.js";
 export default {
   name: "ItemsTable",
   props: ["list"],
+  methods: {
+    removeItem(index) {
+      this.$emit("removeEntry", index);
+    },
+  },
   computed: {
     newList() {
       return this.list.map((item) => {
