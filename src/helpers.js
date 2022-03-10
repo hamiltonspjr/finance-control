@@ -16,7 +16,7 @@ export function dateFormatBr(date) {
 
 export function formatCategory(category) {
   let categoryFormated = "";
-  if (category === income) {
+  if (category === "income") {
     categoryFormated = "Renda";
   } else {
     categoryFormated = "Despesa";
