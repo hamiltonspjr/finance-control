@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { valueFormatBrl, dateFormatBr } from "../helpers.js";
+import { valueFormatBrl, dateFormatBr, formatCategory } from "../helpers.js";
 export default {
   name: "ItemsTable",
   props: ["list"],
@@ -44,7 +44,7 @@ export default {
         return {
           date: dateFormatBr(item.date),
           title: item.title,
-          category: item.category,
+          category: formatCategory(item.category),
           value: valueFormatBrl(item.value),
         };
       });
