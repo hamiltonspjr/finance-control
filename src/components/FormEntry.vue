@@ -35,14 +35,27 @@ export default {
         category: this.category,
         value: this.value,
       };
-      this.$emit("sendEntry", data);
-      this.resetForm();
+      let validation = this.validadeForm();
+      if (!validation) {
+        console.log("algum campo está vazio");
+      } else {
+        this.$emit("sendEntry", data);
+        this.resetForm();
+      }
     },
     resetForm() {
       this.date = null;
       this.title = null;
       this.category = null;
       this.value = null;
+    },
+    validadeForm() {
+      if (!this.date || !this.title || !this.category || !this.value) {
+        alert("Preencha todos os campos");
+        return false;
+      } else {
+        return true;
+      }
     },
   },
 };

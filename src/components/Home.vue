@@ -50,8 +50,11 @@ export default {
       }
     },
     removeItem(event) {
-      this.allEntry.splice(event, 1);
-      window.localStorage.setItem("list", JSON.stringify(this.allEntry));
+      const confirm = window.confirm("Deseja realmente excluir?");
+      if (confirm) {
+        this.allEntry.splice(event, 1);
+        window.localStorage.setItem("list", JSON.stringify(this.allEntry));
+      }
     },
   },
   computed: {
