@@ -17,13 +17,13 @@
             <td>{{ item.title }}</td>
             <td>{{ item.category }}</td>
             <td>{{ item.value }}</td>
-            <td @click="removeItem(index)">excluir</td>
+            <td @click="removeItem(item.title)">excluir</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div v-else>
-      <p>Nenhuma entrada inserida no momento.</p>
+      <p>Nenhum dado no momento.</p>
     </div>
   </section>
 </template>
@@ -34,8 +34,8 @@ export default {
   name: "ItemsTable",
   props: ["list"],
   methods: {
-    removeItem(index) {
-      this.$emit("removeEntry", index);
+    removeItem(value) {
+      this.$emit("removeEntry", value);
     },
   },
   computed: {

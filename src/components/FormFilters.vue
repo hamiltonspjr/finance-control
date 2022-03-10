@@ -34,11 +34,15 @@ export default {
           name: "date",
           value: this.date,
         };
+        this.$emit("filter", data);
+        this.resetData();
       } else if (!this.date && this.category) {
         data = {
           name: "category",
           value: this.category,
         };
+        this.$emit("filter", data);
+        this.resetData();
       } else {
         data = [
           {
@@ -50,9 +54,9 @@ export default {
             value: this.category,
           },
         ];
+        this.$emit("filter", data);
+        this.resetData();
       }
-      this.$emit("filter", data);
-      this.resetData();
     },
     resetData() {
       this.date = null;

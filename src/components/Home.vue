@@ -10,7 +10,11 @@
     <FormFilters @filter="filterEntries" />
     <ItemsTable
       @removeEntry="removeItem"
-      :list="filteredEntries.length > 0 ? filteredEntries : allEntry"
+      :list="
+        filteredEntries && filteredEntries.length > 0
+          ? filteredEntries
+          : allEntry
+      "
     >
     </ItemsTable>
   </main>
@@ -21,6 +25,7 @@ import FormEntry from "./FormEntry.vue";
 import DataCards from "./DataCards.vue";
 import ItemsTable from "./ItemsTable.vue";
 import FormFilters from "./FormFilters.vue";
+import { filterData } from "../helpers.js";
 
 export default {
   name: "Home",
@@ -33,7 +38,8 @@ export default {
   data() {
     return {
       allEntry: [],
-      filteredEntries: [],
+      filteredEntries: null,
+      filterActive: false,
     };
   },
   methods: {
@@ -61,7 +67,12 @@ export default {
     removeItem(event) {
       const confirm = window.confirm("Deseja realmente excluir?");
       if (confirm) {
-        this.allEntry.splice(event, 1);
+        if (this.filterActive) {
+          const newDataFilter = filterData(this.filteredEntries, event);
+          this.filteredEntries = newDataFilter;
+        }
+        const newAllEntry = filterData(this.allEntry, event);
+        this.allEntry = newAllEntry;
         window.localStorage.setItem("list", JSON.stringify(this.allEntry));
       }
     },
@@ -75,12 +86,13 @@ export default {
           (item) => item[event[1].name] === event[1].value
         );
         this.filteredEntries = lastFilter;
+        this.filterActive = true;
       } else {
         const filter = this.allEntry.filter(
           (item) => item[event.name] === event.value
         );
         this.filteredEntries = filter;
-        console.log(this.filteredEntries);
+        this.filterActive = true;
       }
     },
   },
@@ -97,6 +109,7 @@ export default {
       return this.incomeValue - this.expenseValue;
     },
   },
+
   created() {
     this.checkLocalStorage();
   },
