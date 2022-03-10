@@ -36,9 +36,7 @@ export default {
         value: this.value,
       };
       let validation = this.validadeForm();
-      if (!validation) {
-        console.log("algum campo está vazio");
-      } else {
+      if (validation) {
         this.$emit("sendEntry", data);
         this.resetForm();
       }

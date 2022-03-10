@@ -13,3 +13,7 @@ export function dateFormatBr(date) {
   let dateSeparate = date.split("-");
   return `${dateSeparate[2]}/${dateSeparate[1]}/${dateSeparate[0]}`;
 }
+
+export function filterData(array, value) {
+  return array.filter((item) => item.title !== value);
+}
