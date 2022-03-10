@@ -7,7 +7,12 @@
       <DataCards name="Total" :value="total" />
     </section>
     <FormEntry @sendEntry="getEntry" />
-    <ItemsTable @removeEntry="removeItem" :list="allEntry"> </ItemsTable>
+    <FormFilters @filter="filterEntries" />
+    <ItemsTable
+      @removeEntry="removeItem"
+      :list="filteredEntries.length > 0 ? filteredEntries : allEntry"
+    >
+    </ItemsTable>
   </main>
 </template>
 
@@ -15,16 +20,20 @@
 import FormEntry from "./FormEntry.vue";
 import DataCards from "./DataCards.vue";
 import ItemsTable from "./ItemsTable.vue";
+import FormFilters from "./FormFilters.vue";
+
 export default {
   name: "Home",
   components: {
     FormEntry,
     DataCards,
     ItemsTable,
+    FormFilters,
   },
   data() {
     return {
       allEntry: [],
+      filteredEntries: [],
     };
   },
   methods: {
@@ -54,6 +63,24 @@ export default {
       if (confirm) {
         this.allEntry.splice(event, 1);
         window.localStorage.setItem("list", JSON.stringify(this.allEntry));
+      }
+    },
+    filterEntries(event) {
+      if (event.length > 1) {
+        const oneFilter = this.allEntry.filter(
+          (item) => item[event[0].name] === event[0].value
+        );
+
+        const lastFilter = oneFilter.filter(
+          (item) => item[event[1].name] === event[1].value
+        );
+        this.filteredEntries = lastFilter;
+      } else {
+        const filter = this.allEntry.filter(
+          (item) => item[event.name] === event.value
+        );
+        this.filteredEntries = filter;
+        console.log(this.filteredEntries);
       }
     },
   },
