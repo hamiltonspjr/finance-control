@@ -1,22 +1,30 @@
 <template>
-  <main>
+  <main class="main">
     <h1>Controle Financeiro</h1>
-    <section>
-      <DataCards name="Renda" :value="incomeValue" />
-      <DataCards name="Despesa" :value="expenseValue" />
-      <DataCards name="Total" :value="total" />
-    </section>
-    <FormEntry @sendEntry="getEntry" />
-    <FormFilters @filter="filterEntries" />
-    <ItemsTable
-      @removeEntry="removeItem"
-      :list="
-        filteredEntries && filteredEntries.length > 0
-          ? filteredEntries
-          : allEntry
-      "
-    >
-    </ItemsTable>
+    <div class="cards-container">
+      <DataCards name="Renda" :value="incomeValue" :negativeValue="false" />
+      <DataCards name="Despesa" :value="expenseValue" :negativeValue="true" />
+      <DataCards
+        name="Total"
+        :value="total"
+        :negativeValue="total > 0 ? false : true"
+      />
+    </div>
+    <div class="forms-container">
+      <FormEntry @sendEntry="getEntry" />
+      <FormFilters @filter="filterEntries" />
+    </div>
+    <div class="table-container">
+      <ItemsTable
+        @removeEntry="removeItem"
+        :list="
+          filteredEntries && filteredEntries.length > 0
+            ? filteredEntries
+            : allEntry
+        "
+      >
+      </ItemsTable>
+    </div>
   </main>
 </template>
 
@@ -115,4 +123,34 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.main h1 {
+  color: #363f5f;
+  font-size: 3rem;
+  margin-bottom: 6rem;
+}
+.cards-container,
+.forms-container,
+.table-container {
+  width: 100%;
+}
+.cards-container {
+  display: flex;
+  gap: 2rem;
+}
+@media screen and (max-width: 768px) {
+  .cards-container {
+    flex-direction: column;
+  }
+}
+</style>

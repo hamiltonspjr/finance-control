@@ -1,18 +1,22 @@
 <template>
-  <section>
-    <h2>Filtrar por:</h2>
-    <form>
-      <label for="date">Data</label>
-      <input type="date" name="date" id="date" v-model="date" />
-      <label for="category">Categoria</label>
-      <select name="category" id="category" v-model="category">
-        <option disabled value="">Selecione uma categoria</option>
-        <option value="income">Renda</option>
-        <option value="expense">Despesa</option>
-      </select>
+  <div class="form-container">
+    <h2 class="form-container__title">Filtrar por:</h2>
+    <form class="form">
+      <div class="form__item">
+        <label for="date">Data</label>
+        <input type="date" name="date" id="date" v-model="date" />
+      </div>
+      <div class="form__item">
+        <label for="category">Categoria</label>
+        <select name="category" id="category" v-model="category">
+          <option disabled value="">Selecione uma categoria</option>
+          <option value="income">Renda</option>
+          <option value="expense">Despesa</option>
+        </select>
+      </div>
       <button @click.prevent="handleFilter">Filtrar</button>
     </form>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -66,4 +70,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped></style>
