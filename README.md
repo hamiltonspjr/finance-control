@@ -25,7 +25,7 @@
   <li> Ter o git instalado </li>
 </ul>
 
-<p> Você depois pode clonar esse repositório através do comando: git clone https://github.com/Hamilton-junior/heroes.git </p>
+<p> Você depois pode clonar esse repositório através do comando: git clone https://github.com/Hamilton-junior/finance-control.git </p>
 
 <p> Esse projeto foi criado utilizando <a href="https://vitejs.dev/guide/"> Vite </a>
 
