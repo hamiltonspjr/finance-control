@@ -81,7 +81,6 @@ export default {
         const oneFilter = this.allEntry.filter(
           (item) => item[event[0].name] === event[0].value
         );
-
         const lastFilter = oneFilter.filter(
           (item) => item[event[1].name] === event[1].value
         );
