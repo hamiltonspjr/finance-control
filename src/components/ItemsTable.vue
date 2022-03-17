@@ -98,6 +98,9 @@ export default {
   border: none;
   cursor: pointer;
 }
+p {
+  font-size: 2rem;
+}
 
 @media screen and (max-width: 768px) {
   .table__thead,

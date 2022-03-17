@@ -7,7 +7,7 @@
       <DataCards
         name="Total"
         :value="total"
-        :negativeValue="total > 0 ? false : true"
+        :negativeValue="total >= 0 ? false : true"
       />
     </div>
     <div class="forms-container">
