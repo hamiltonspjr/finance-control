@@ -14,6 +14,7 @@
       <FormEntry @sendEntry="getEntry" />
       <FormFilters @filter="filterEntries" />
     </div>
+
     <div class="table-container">
       <ItemsTable
         @removeEntry="removeItem"
@@ -22,8 +23,7 @@
             ? filteredEntries
             : allEntry
         "
-      >
-      </ItemsTable>
+      ></ItemsTable>
     </div>
   </main>
 </template>
@@ -148,6 +148,7 @@ export default {
   display: flex;
   gap: 2rem;
 }
+
 @media screen and (max-width: 768px) {
   .cards-container {
     flex-direction: column;
